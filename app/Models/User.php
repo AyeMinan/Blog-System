@@ -41,5 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_admin'=> 'boolean'
     ];
+     public function comments(){
+        return $this->hasMany(Comment::class);
+     }
+
+     public function subscribedBlogs(){
+        return $this->hasMany(Blog::class, 'blogs_users');
+     }
+
+     public function blogs(){
+        return $this->hasMany(Blog::class);
+     }
 }
